@@ -2,6 +2,7 @@ package vn.edu.usth.weather;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,18 +17,39 @@ public class forecast_fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         LinearLayout layout = new LinearLayout(getActivity());
         layout.setOrientation(LinearLayout.VERTICAL);
+        layout.setBackgroundColor(Color.parseColor("#FFBBDEFB"));
 
-        TextView textView = new TextView(getActivity());
-        textView.setText("Thursday");
-        textView.setTextSize(24);
-        textView.setTextColor(Color.BLACK);
+        String[] days = {"Mon", "Tue", "Wed", "Thu", "Fri"};
+        int[] icons = {
+                R.drawable.weather_icon,
+                R.drawable.sunny_icon,
+                R.drawable.weather_icon,
+                R.drawable.cloudy_icon,
+                R.drawable.sunny_icon
+        };
+        for (int i = 0; i < days.length; i++) {
+            LinearLayout entryLayout = new LinearLayout(getActivity());
+            entryLayout.setOrientation(LinearLayout.HORIZONTAL);
+            entryLayout.setGravity(Gravity.CENTER_VERTICAL);
+            entryLayout.setPadding(8, 8, 8, 8);
 
-        ImageView imageView = new ImageView(getActivity());
-        imageView.setImageResource(R.drawable.weather_icon);
+            TextView textView = new TextView(getActivity());
+            textView.setText(days[i]);
+            textView.setTextSize(18);
+            textView.setTextColor(Color.BLACK);
 
-        layout.addView(textView);
-        layout.addView(imageView);
+            ImageView imageView = new ImageView(getActivity());
+            imageView.setImageResource(icons[i]);
 
+            LinearLayout.LayoutParams imageParams = new LinearLayout.LayoutParams(300, 300);
+            imageParams.setMargins(8, 0, 0, 0);
+            imageView.setLayoutParams(imageParams);
+
+            entryLayout.addView(textView);
+            entryLayout.addView(imageView);
+
+            layout.addView(entryLayout);
+        }
         return layout;
     }
 }
