@@ -23,7 +23,7 @@ public class forecast_fragment extends Fragment {
         textView.setTextColor(Color.BLACK);
 
         ImageView imageView = new ImageView(getActivity());
-        imageView.setImageResource(R.drawable.weather_icon); // Replace with your icon name
+        imageView.setImageResource(R.drawable.weather_icon);
 
         layout.addView(textView);
         layout.addView(imageView);
