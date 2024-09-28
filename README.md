@@ -10,7 +10,7 @@ Students are expected to:
 Student Info
 =======================
 
-* Name: *YourNameHere*
-* ID: *YourIdHere*
-* Group ID: *Your Group ID here*
-* Project Name: *Your Project Name here*
+* Name: Bui Ngoc Hai
+* ID: BI12-144
+* Group ID: 22
+* Project Name: Cryptocurrency
