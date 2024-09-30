@@ -18,9 +18,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="12°C\nCloudy"
-            android:textSize="24sp"
-            android:textColor="#000" />
+            android:text="@string/weather"
+            android:textSize="@dimen/padding_medium"
+            android:textColor="@color/text_color" />
 
         <ImageView
             android:id="@+id/current_weather_icon"

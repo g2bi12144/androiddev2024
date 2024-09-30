@@ -1,3 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">USTHWeather</string>
+        <string name="app_name">USTH Weather</string>
+        <string name="hanoi">Hanoi</string>
+        <string name="paris">Paris</string>
+        <string name="toulouse">Toulouse</string>
+        <string name="weather">Weather</string>
+        <string name="temperature">Temperature</string>
 </resources>
