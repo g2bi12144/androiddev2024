@@ -1,58 +1,38 @@
 package vn.edu.usth.weather;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager.widget.ViewPager;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class weather_activity extends AppCompatActivity {
 
-    private static final String TAG = "WeatherActivity";
+    private ViewPager viewPager;
+    private weather_adapter adapter;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.weather_activity);
-        Log.i(TAG, "onCreate");
 
-        if (savedInstanceState == null) {
-            forecast_fragment forecastFragment = new forecast_fragment();
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.add(R.id.weather_fragment, forecastFragment);
-            fragmentTransaction.commit();
+        viewPager = findViewById(R.id.view_pager);
+        adapter = new weather_adapter(getSupportFragmentManager(), createFragments());
+        viewPager.setAdapter(adapter);
+    }
+
+    private List<Fragment> createFragments() {
+        List<Fragment> fragments = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            fragments.add(new weather_and_forecast_fragment());
         }
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.i(TAG, "onStart");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.i(TAG, "onResume");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.i(TAG, "onPause");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.i(TAG, "onStop");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.i(TAG, "onDestroy");
+        return fragments;
     }
 }
