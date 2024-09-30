@@ -2,37 +2,57 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#E0F7FA"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:gravity="center_horizontal">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp">
+
+        <ImageView
+            android:id="@+id/weather_frame"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/frame"
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:id="@+id/temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="27°C"
+            android:textSize="24sp"
+            android:textColor="#000" />
+
+        <TextView
+            android:id="@+id/weather_condition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/temperature"
+            android:layout_centerHorizontal="true"
+            android:text="Mostly Cloudy"
+            android:textSize="18sp"
+            android:textColor="#000" />
+
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:text="Hà Nội"
+            android:textSize="18sp"
+            android:textColor="#000" />
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:background="#C8E6C9"
-        android:padding="16dp">
+        android:orientation="vertical"
+        android:padding="8dp">
 
-        <TextView
-            android:id="@+id/current_weather"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/weather"
-            android:textSize="@dimen/padding_medium"
-            android:textColor="@color/text_color" />
-
-        <ImageView
-            android:id="@+id/current_weather_icon"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/cloudy_icon" />
     </LinearLayout>
 
-    <fragment
-        android:id="@+id/forecast_fragment"
-        android:name="vn.edu.usth.weather.forecast_fragment"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
 </LinearLayout>
