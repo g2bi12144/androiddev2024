@@ -1,21 +1,22 @@
 package vn.edu.usth.weather;
 
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
+import android.widget.TextView;
 import androidx.fragment.app.Fragment;
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.ImageRequest;
+import com.android.volley.Response;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import org.json.JSONObject;
 
-public class forecast_fragment extends Fragment {
+public class weather_fragment extends Fragment {
 
-    private ImageView logoImageView;
+    private TextView weatherTextView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -23,22 +24,23 @@ public class forecast_fragment extends Fragment {
         layout.setOrientation(LinearLayout.VERTICAL);
         layout.setPadding(16, 16, 16, 16);
 
-        logoImageView = new ImageView(getActivity());
-        layout.addView(logoImageView);
+        weatherTextView = new TextView(getActivity());
+        layout.addView(weatherTextView);
 
         RequestQueue queue = Volley.newRequestQueue(getActivity());
-        String url = "https://www.usth.edu.vn/uploads/logo.png";
+        String url = "https://api.openweathermap.org/data/2.5/weather?q=Hanoi&appid=784dfc7ae888888888c6f838a33b3691\n";
 
-        ImageRequest imageRequest = new ImageRequest(url,
-                response -> {
-                    logoImageView.setImageBitmap(response);
-                    Toast.makeText(getActivity(), "Logo downloaded", Toast.LENGTH_SHORT).show();
-                },
-                0, 0, ImageView.ScaleType.CENTER_CROP, Bitmap.Config.RGB_565,
-                error -> Toast.makeText(getActivity(), "Failed to download logo", Toast.LENGTH_SHORT).show());
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                response -> displayWeather(response),
+                error -> weatherTextView.setText("Failed to retrieve data"));
 
-        queue.add(imageRequest);
+        queue.add(jsonObjectRequest);
 
         return layout;
+    }
+
+    private void displayWeather(JSONObject response) {
+        String weatherInfo = response.toString();
+        weatherTextView.setText(weatherInfo);
     }
 }
