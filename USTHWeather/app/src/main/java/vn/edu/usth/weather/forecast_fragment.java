@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.fragment.app.Fragment;
+import android.os.AsyncTask;
+import android.widget.Toast;
 
 public class forecast_fragment extends Fragment {
 
@@ -18,6 +20,8 @@ public class forecast_fragment extends Fragment {
         LinearLayout layout = new LinearLayout(getActivity());
         layout.setOrientation(LinearLayout.VERTICAL);
         layout.setPadding(16, 16, 16, 16);
+
+        new NetworkTask().execute();
 
         String[] days = {"Mon", "Tue", "Wed", "Thu", "Fri"};
         String[] conditions = {"Rain", "Scattered Showers", "Partly Cloudy", "Partly Cloudy", "Sunny"};
@@ -67,4 +71,24 @@ public class forecast_fragment extends Fragment {
 
         return layout;
     }
+    private class NetworkTask extends AsyncTask<Void, Void, String> {
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            try {
+                // Simulate network delay
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return "Network request completed!";
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            Toast.makeText(getActivity(), result, Toast.LENGTH_SHORT).show();
+        }
+    }
+}
 }
